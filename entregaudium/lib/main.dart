@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:entregaudium/features/profile/profile_factory.dart';
+import 'package:entregaudium/support/utils/mobile_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'Entregaudium'),
       debugShowCheckedModeBanner: false,
+      routes: MobileRouter.routes,
     );
   }
 }
@@ -66,21 +69,42 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text(
-            widget.title,
-            style: const TextStyle(color: Colors.white),
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text(
+          widget.title,
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+      body: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: _center,
+          zoom: 14.0,
+        ),
+        markers: _markers.values.toSet(),
+      ),
+      bottomNavigationBar: InkWell(
+        onTap: toProfile,
+        child: Container(
+          height: 50,
+          color: Colors.blue,
+          child: const Center(
+            child: Text(
+              'Acessar perfil do motorista',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 14.0,
-          ),
-          markers: _markers.values.toSet(),
-        ));
+      ),
+    );
+  }
+
+  void toProfile() {
+    Navigator.pushNamed(context, ProfileFactory.router);
   }
 
   Future<Uint8List?> getBytesFromAsset(String path, int width) async {
