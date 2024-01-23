@@ -7,6 +7,8 @@ abstract class ProfileViewModelProtocol extends ChangeNotifier {
   bool get loading;
   bool get hasErro;
   String get amount;
+  String get delivery;
+  String get assessment;
   String get description;
 
   void getData();
@@ -100,20 +102,20 @@ class ProfileView extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            const ItemDescription(
+                            ItemDescription(
                               label: 'Entregas',
                               path: 'assets/images/ic_entregas.png',
-                              value: '0',
+                              value: viewModel.delivery,
                             ),
                             ItemDescription(
                               label: 'Saldo',
                               path: 'assets/images/ic_saldo.png',
                               value: 'R\$ ${viewModel.amount}',
                             ),
-                            const ItemDescription(
+                            ItemDescription(
                               label: 'Nota',
                               path: 'assets/images/ic_nota.png',
-                              value: '0',
+                              value: viewModel.assessment,
                             ),
                           ],
                         ),
