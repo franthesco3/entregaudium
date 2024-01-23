@@ -6,6 +6,7 @@ abstract class ProfileViewModelProtocol extends ChangeNotifier {
   String get cargo;
   bool get loading;
   bool get hasErro;
+  String get amount;
   String get description;
 
   void getData();
@@ -31,7 +32,9 @@ class ProfileView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          if (viewModel.hasErro) {}
+          if (viewModel.hasErro) {
+            return const Center(child: Text('Ocorreu um erro inesperado'));
+          }
           return Column(
             children: [
               Stack(
@@ -94,10 +97,10 @@ class ProfileView extends StatelessWidget {
                     Expanded(
                       child: Container(
                         color: Colors.blue,
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            ItemDescription(
+                            const ItemDescription(
                               label: 'Entregas',
                               path: 'assets/images/ic_entregas.png',
                               value: '0',
@@ -105,9 +108,9 @@ class ProfileView extends StatelessWidget {
                             ItemDescription(
                               label: 'Saldo',
                               path: 'assets/images/ic_saldo.png',
-                              value: 'R\$ 0',
+                              value: 'R\$ ${viewModel.amount}',
                             ),
-                            ItemDescription(
+                            const ItemDescription(
                               label: 'Nota',
                               path: 'assets/images/ic_nota.png',
                               value: '0',
