@@ -12,6 +12,7 @@ class ProfileRouter extends ProfileRouterProtocol {
   void getProfile({required Success success, required Failure failure}) {
     final endpoint = Endpoint(path: 'perfil.php', method: Method.get);
 
-    api_provider.request(endpoint: endpoint);
+    api_provider.request(
+        endpoint: endpoint, success: success, failure: failure);
   }
 }

@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:entregaudium/features/profile/profile_factory.dart';
 import 'package:entregaudium/support/utils/mobile_router.dart';
 import 'package:flutter/material.dart';

@@ -14,6 +14,13 @@ class ProfileViewController extends StatefulWidget {
 
 class _ProfileViewControllerState extends State<ProfileViewController> {
   @override
+  void initState() {
+    super.initState();
+
+    widget.viewModel.getData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ProfileView(viewModel: widget.viewModel);
   }

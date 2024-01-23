@@ -5,6 +5,6 @@ class User {
 
   User.fromMap(Map<String, dynamic> map)
       : cargo = map['cargo'],
-        name = map['name'],
-        description = map['description'];
+        name = map['nome'],
+        description = map['descricao'];
 }

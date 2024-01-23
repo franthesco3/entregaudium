@@ -20,6 +20,7 @@ class ProfileUseCase extends ProfileUseCaseProtocol {
       success: (result) {
         try {
           final user = User.fromMap(result['response']);
+
           success?.call(user);
         } on Error catch (error) {
           failure?.call(error.stackTrace.toString());
